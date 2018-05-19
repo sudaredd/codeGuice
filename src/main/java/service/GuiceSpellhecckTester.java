@@ -14,6 +14,8 @@ public class GuiceSpellhecckTester {
 		editor.makeSpellCheck();
 		TextEditor editor2 = injector.getInstance(TextEditor.class);
 		editor2.makeSpellCheck();
+		
+		injector.getInstance(RawEditor.class).makeSpellCheck();
 	}
 
 }
