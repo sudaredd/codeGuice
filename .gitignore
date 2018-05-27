@@ -1,5 +1,6 @@
 .gradle
 /build/
+activemq-data/
 !gradle/wrapper/gradle-wrapper.jar
 bin/
 ### STS ###
