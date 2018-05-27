@@ -11,7 +11,6 @@ import javax.jms.Session;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Inject;
 import com.google.inject.Provides;
 
 public class MessageModule extends AbstractModule {
@@ -30,20 +29,18 @@ public class MessageModule extends AbstractModule {
 		connection.start();
 		return connection;
 	}
-	
-	
 
 	@Provides
 	private Session session(Connection connection) throws JMSException {
 		return connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 	}
-	
+
 	@Provides
 	private MessageProducer messageProducer(Session session) throws JMSException {
 		Queue queue = session.createQueue(messageQueueName);
 		return session.createProducer(queue);
 	}
-	
+
 	@Provides
 	private MessageConsumer messageConsumer(Session session) throws JMSException {
 		Queue queue = session.createQueue(messageQueueName);

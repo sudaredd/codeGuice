@@ -20,12 +20,17 @@ public class Sender {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Sender.class);
 
-	public void sendMsg(String msg) throws JMSException {
+	public void sendMsg(String msg) {
 		// create a JMS TextMessage
-		TextMessage textMessage = session.createTextMessage(msg);
-		// send the message to the queue destination
-		messageProducer.send(textMessage);
-		LOGGER.info("message sent:" + msg);
-
+		TextMessage textMessage;
+		try {
+			textMessage = session.createTextMessage(msg);
+			// send the message to the queue destination
+			messageProducer.send(textMessage);
+			LOGGER.info("message sent:" + msg);
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
